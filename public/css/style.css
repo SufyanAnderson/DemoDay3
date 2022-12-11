@@ -1,0 +1,56 @@
+.btn-primary {
+    color: black;
+}
+
+body {
+    background-image: url(/css/skaters3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
+.rowOfRequest {
+    flex-direction: row;
+}
+
+.form-control {
+    width: 100%;
+    color:black;
+}
+
+.videos {
+    height: 550px;
+}
+
+.videoUploadForm {
+    width: 30%;
+}
+
+.backgroundAnimation {
+    margin: auto;
+    background-image: url(/css/crown7.gif);
+    height: 200px;
+    width: 200px;
+}
+
+.font-bold {
+    font-weight: 700;
+    color: white;
+}
+
+h2 {
+    font-size: inherit;
+    color: white;
+    font-weight: inherit;
+}
+
+.bg-gray-800 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.teamSection {
+    background-color: rgba(146, 143, 143, 0.348);
+    border-radius: 3%;
+    padding: 10%;
+    margin: 10%;
+}

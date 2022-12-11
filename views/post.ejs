@@ -1,0 +1,158 @@
+<%- include('partials/header') -%>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <!-- <div class="col-6">
+      <h2><%= post.title %></h2>
+      <img class="img-fluid" src="<%= post.image%>" /> -->
+      <link rel="stylesheet" href=""
+      <div class="row justify-content-between">
+      
+
+        <div class="flex justify-center">
+          <div class="rounded-lg shadow-lg bg-white max-w-sm">
+            <a href="#!">
+              <img class="rounded-t-lg" src="<%= post.image%>" alt=""/>
+            </a>
+            <div class="p-6">
+              <h5 class="text-gray-900 text-xl font-medium mb-2"><%= post.title %></h5>
+              <p class="text-gray-700 text-base mb-4">
+                <%= post.caption %>
+              </p>
+              <p>
+                
+                  <p><%= post.level %></p>
+    
+              </p>
+           
+          <form
+          class="col-1"
+          action="/post/joinPost/<%= post._id %>?_method=PUT"
+          method="POST"
+        >
+        <%if(!isAdmin){ %>
+          <button class="btn btn-primary" type="submit">Join</button>
+        <%}%>
+        
+      
+        
+         </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- <%if(isAdmin){ %>
+        <form
+          action="/post/deletePost/<%= post.id %>?_method=DELETE"
+          method="POST"
+          class="col-3"
+        >
+          <button class="btn btn-primary fa fa-trash" type="submit"></button>
+        </form>
+  
+        <%for (let i=0; post.requests.length > i; i++) { %>
+          
+          <% if(!post.requests.includes(post.accepted.map(e=>Object.values(e)))) { %>
+           <div>
+              <button class="btn btn-primary" >Pending Request From <%= post.requests[i] %></button>
+              <form
+              action="/post/acceptRequest/<%= post.requests[i] %>?_method=PUT"
+              method="POST"
+              class="col-3"
+              >
+              <button class="btn btn-primary accept" id="<%= post.id %>" type="submit">Accept</button>
+            </form>
+            </div>
+            
+            
+            <form
+            action="/post/denyRequest/<%= post.id %>?_method=PUT"
+            method="POST"
+            class="col-3"
+            >
+              <button class="btn btn-primary">Deny</button>
+            </form>
+          <%}%>
+        <%}%>
+        <%}%>
+  
+        
+          <form
+          class="col-1"
+          action="/post/joinPost/<%= post._id %>?_method=PUT"
+          method="POST"
+        >
+        <!-- <%if(!isAdmin){ %>
+          <button class="btn btn-primary" type="submit">Join</button>
+        <%}%>
+         --> 
+      
+        
+         </form>
+        
+      </div>
+    </div>
+    <div class="flex flex-row">
+      <%if(isAdmin){ %>
+        <%for (let i=0; post.requests.length > i; i++) { %>
+          <% if(!post.requests.includes(post.accepted.map(e=>Object.values(e)))) { %>
+<div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 ">
+  <div class="flex justify-end px-4 pt-4">
+
+      <!-- Dropdown menu -->
+      <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
+          <ul class="py-1" aria-labelledby="dropdownButton">
+          <li>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+          </li>
+          <li>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
+          </li>
+          <li>
+              <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+          </li>
+          </ul>
+      </div>
+  </div>
+  <div class="flex flex-col items-center pb-10">
+      
+      <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><%= post.requests[i] %></h5>
+      <div class="flex mt-4 space-x-3 md:mt-6">
+        <form
+        action="/post/acceptRequest/<%= post.requests[i] %>?_method=PUT"
+        method="POST"
+        >
+        <button class="btn btn-primary accept" id="<%= post.id %>" type="submit">Accept</button>
+     
+      </form>
+        <button class="btn btn-primary" onclick="denyRequest('<%= post.id %>','<%= requests[i] %>')">Deny</button>
+          
+        </div>
+  </div>
+</div>
+<%}%>
+<%}%>
+<%}%>
+    </div>
+    <!-- <div class="col-3 mt-5">
+      <p><%= post.caption %></p>
+    </div>
+    <div class="col-3 mt-5">
+      <p><%= post.level %></p>
+    </div> -->
+    
+    <!-- <div class="col-6 mt-5">
+      <a class="btn btn-primary" href="/profile">Return to Profile</a>
+      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+    </div> -->
+  </div>
+</div>
+<script>
+  const acceptButton = document.querySelectorAll('.accept')
+  acceptButton.forEach(button => button.addEventListener('click', (e) => {
+   const id = e.target.getAttribute('id')
+   const requesterId = e.target.parentNode.childNodes[1]
+   console.log(requesterId)
+  })) 
+</script>
+<script src="/main.js"></script>
+<%- include('partials/footer') -%>

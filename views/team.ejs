@@ -1,0 +1,88 @@
+<%- include('partials/team') -%> 
+<div>
+<!---->
+
+
+<form action="/post/uploadVideo" enctype="multipart/form-data" method="POST">
+    <div class="mb-3">
+  
+
+   <div class="mb-3">
+    
+    
+    
+        </a>
+      <label for="imgUpload" class="form-label">Upload Your Clip</label>
+      <input type="file" class="form-control videoUploadForm" name="file">
+    </div>
+    <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+  </form>
+  
+
+  <section class=" dark:bg-gray-900">
+    
+
+    <section class="teamSection">
+      <div class="backgroundAnimation ">
+      
+      </div>
+    <h2 class="text-3xl font-semibold text-center text-white capitalize lg:text-4xl dark:text-white">Kings of the Hill</h2>
+    <div>
+    <div class="flex justify-center">
+        <div class="rounded-lg shadow-lg max-w-sm">
+          <a href="#!">
+            <video controls>
+              <source src="<%= uploads[0].url %>" type="video/mp4">
+            </video>
+          </a>
+          <div class="p-6">
+            <h5 class="text-gray-900 text-xl font-medium mb-2"><%= uploads[0].name %></h5>
+           
+            <form
+            class="col-1"
+            action="/post/likeVideo/<%= uploads[0]._id %>?_method=PUT"
+            method="POST"
+          >
+            <button class="btn btn-primary fa fa-heart" type="submit"></button>
+          </form>
+          <h2 class="textColor">Likes: <%= uploads[0].likes %></h2>  
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <h2 class="text-3xl font-semibold text-center text-white capitalize lg:text-4xl dark:text-white">videos</h2>
+    <section class="flex flex-row">
+    <%for (let i=1; i < uploads.length; i++) { %>
+    <div class="container px-6 py-8 mx-auto flex flex-row">
+        
+    <div class="max-w-sm rounded overflow-hidden shadow-lg ">
+          <video controls>
+            <source src="<%= uploads[i].url %>" type="video/mp4">
+          </video>
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2 rounded-md"><%= uploads[i].name %></div>
+            <form
+            class="col-1"
+            action="/post/likeVideo/<%= uploads[i]._id %>?_method=PUT"
+            method="POST"
+          >
+            <button class="btn btn-primary fa fa-heart" type="submit"></button>
+          </form>
+          <h2>Likes: <%= uploads[i].likes %></h2>  
+            </div>
+          </div>
+
+        </div>
+        <%}%> 
+    </div>
+  </section>
+</section>
+</section> 
+</div>
+
+
+
+        </section>
+</div>
+
