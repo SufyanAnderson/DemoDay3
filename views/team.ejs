@@ -28,7 +28,9 @@
       </div>
     <h2 class="text-3xl font-semibold text-center text-white capitalize lg:text-4xl dark:text-white">Kings of the Hill</h2>
     <div>
+      <%if ( uploads.length > 0) { %>
     <div class="flex justify-center">
+
         <div class="rounded-lg shadow-lg max-w-sm">
           <a href="#!">
             <video controls>
@@ -50,7 +52,7 @@
         </div>
       </div>
     </div>
-    
+    <%}%> 
     <h2 class="text-3xl font-semibold text-center text-white capitalize lg:text-4xl dark:text-white">videos</h2>
     <section class="flex flex-row">
     <%for (let i=1; i < uploads.length; i++) { %>

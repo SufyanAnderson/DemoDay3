@@ -121,6 +121,7 @@
         action="/post/acceptRequest/<%= post.requests[i] %>?_method=PUT"
         method="POST"
         >
+        <input type="hidden" name="postid" value="<%= post.id %>"> 
         <button class="btn btn-primary accept" id="<%= post.id %>" type="submit">Accept</button>
      
       </form>

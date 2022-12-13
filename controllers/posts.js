@@ -19,7 +19,7 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts });
+      res.render("feed.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -32,7 +32,7 @@ module.exports = {
       //console.log(JSON.stringify(post.requests))
 
       const isAdmin = post.admin == req.user.id
-      res.render("post.ejs", { post: post, user: req.user, isAdmin, requests: post.requests, user: req.user});
+      res.render("post.ejs", { post: post, user: req.user, isAdmin, requests: post.requests});
     } catch (err) {
       console.log(err);
     }
@@ -119,16 +119,16 @@ module.exports = {
   acceptRequest: async (req, res) => {
     try {
      const acceptedUser = await User.findById(req.params.id)  
-     acceptedUser.group = req.user.group 
+     acceptedUser.group = req.body.postid 
      acceptedUser.save() 
       await Post.findOneAndUpdate(
-        { _id: postId },
+        { _id: req.body.postid },
         {
           $pull: { requests: [req.params.id]},
           $push: {accepted: [req.params.id]}
          }
       );
-      res.redirect(`/post/${postId}`);
+      res.redirect(`/post/${req.body.postid}`);
     } catch (err) {
       console.log(err);
     }

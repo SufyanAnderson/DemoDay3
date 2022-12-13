@@ -8,11 +8,12 @@ const { ObjectID } = require('mongodb');
 exports.getTeam = async (req, res) => {
     try {
      //  const post = await Post.find({ _id: req.params.id });
-     const uploads = await Upload.find(req.params.id);
-     const uploadUrls = await Upload.findById(req.params.id);
-     const sortedLikes = uploads.sort((a,b )=> b.likes - a.likes)
-     console.log(uploads)
-     res.render("team.ejs", { uploads: uploads, uploadUrls  });
+     const groupId = req.user.group;
+     const uploads = await Upload.find({group: groupId});
+    //  const uploadUrls = await Upload.findById(req.params.id);
+     uploads.sort((a,b )=> b.likes - a.likes)
+     console.log(uploads, groupId, 'testing')
+     res.render("team.ejs", { uploads: uploads });
     } catch (err) {
       console.log(err);
     }
@@ -57,8 +58,8 @@ exports.uploadVideo = (req, res) => {
             url: result.url,
             cloudinary_id: result.public_id,
             description: req.body.description,
-            group: req.params.id, 
-            user: req.user.group,
+            group: req.user.group, 
+            user: req.user._id,
             likes: 0 
         });
         upload.save((err, result) => {
